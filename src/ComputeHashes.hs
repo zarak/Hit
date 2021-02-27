@@ -7,7 +7,7 @@ module ComputeHashes
     string,
     blob,
     compressed,
-    hashlazy
+    hashlazy,
   )
 where
 
@@ -22,7 +22,9 @@ import System.Process (system)
 import Text.Printf (printf)
 
 string = "hello\n"
+
 blob = "blob " <> show (numBytesUtf8 string) <> "\0" <> string
+
 compressed = compress $ Lazy.fromStrict $ T.encodeUtf8 $ T.pack blob
 
 run :: IO ()

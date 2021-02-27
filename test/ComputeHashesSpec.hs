@@ -1,10 +1,10 @@
 module ComputeHashesSpec (spec) where
 
-import Test.Hspec
-import Test.QuickCheck
+import Codec.Compression.Zlib (decompress)
 import ComputeHashes
 import MyLib
-import Codec.Compression.Zlib (decompress)
+import Test.Hspec
+import Test.QuickCheck
 
 spec :: Spec
 spec =
