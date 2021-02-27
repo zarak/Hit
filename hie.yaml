@@ -5,3 +5,6 @@ cradle:
 
     - path: "app/Main.hs"
       component: "Hit:exe:Hit"
+
+    - path: "test"
+      component: "Hit:test:Hit-test"
