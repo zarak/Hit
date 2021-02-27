@@ -13,7 +13,8 @@ $ cat git-simple-commit/.git/objects/ce/013625030ba8dba906f756967f9e9ca394464a |
 13
 ```
 
-View hexdump
+2. View hexdump  
+  There is a null byte between the length header and the blob content.
 
 ```bash
 $ cat git-simple-commit/.git/objects/ce/013625030ba8dba906f756967f9e9ca394464a | inflate | hexdump -C
