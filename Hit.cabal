@@ -64,3 +64,4 @@ test-suite Hit-test
                     , hspec
                     , QuickCheck
                     , Hit
+    other-modules:    ComputeHashesSpec
