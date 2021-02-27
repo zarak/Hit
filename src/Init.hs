@@ -4,5 +4,8 @@ module Init
 
 initRepository :: FilePath -> IO ()
 initRepository fp = do
-  _createPaths -- Create root and git paths
-  _createDirs -- Create object and refs directories
+  createPaths -- Create root and git paths
+  createDirs -- Create object and refs directories
+    where
+      createPaths = _a
+      createDirs = _b
