@@ -17,6 +17,7 @@
 
   ```bash
   $ cat git-simple-commit/.git/objects/ce/013625030ba8dba906f756967f9e9ca394464a | inflate | hexdump -C
+  # non-ascii chars are displayed as .
   00000000  62 6c 6f 62 20 36 00 68  65 6c 6c 6f 0a           |blob 6.hello.|
-  0000000d
+  0000000d # total size of file
   ```
