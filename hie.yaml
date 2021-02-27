@@ -6,7 +6,7 @@ cradle:
     - path: "app/Main.hs"
       component: "Hit:exe:Hit"
 
-    - path: "exe/MyLib.hs"
+    - path: "exe/Main.hs"
       component: "Hit:exe:inflate"
 
     - path: "test"

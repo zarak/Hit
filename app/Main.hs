@@ -1,8 +1,11 @@
 module Main where
 
-import qualified MyLib (inflate)
 import Params (cmdLineParser, Params(..))
-import Init (initRepository)
+-- import Init (initRepository)
 
-main :: Params -> IO ()
-main params = MyLib.inflate
+-- main :: Params -> IO ()
+-- main params =
+  -- putStrLn "Test"
+
+main :: IO ()
+main = putStrLn "Test"

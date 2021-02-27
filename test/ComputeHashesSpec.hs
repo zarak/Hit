@@ -2,7 +2,6 @@ module ComputeHashesSpec (spec) where
 
 import Codec.Compression.Zlib (decompress)
 import ComputeHashes
-import MyLib
 import Test.Hspec
 import Test.QuickCheck
 
