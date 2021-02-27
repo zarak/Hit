@@ -2,7 +2,7 @@
 
 [Building git](https://shop.jcoglan.com/building-git/) in Haskell.
 
-1. Test zlib compression  
+### Test zlib compression  
   ```bash
   $ alias inflate=dist-newstyle/build/x86_64-linux/ghc-8.10.4/Hit-0.1.0.0/x/Hit/build/Hit/Hit
   $ cat git-simple-commit/.git/objects/ce/013625030ba8dba906f756967f9e9ca394464a | inflate
@@ -12,7 +12,7 @@
   13
   ```
 
-2. View hexdump of a blob  
+### View hexdump of a blob  
   There is a null byte between the length header and the blob content.
 
   ```bash
@@ -22,7 +22,7 @@
   0000000d # total size of file
   ```
 
-2. View hexdump of a tree  
+### View hexdump of a tree  
   ```bash
   $ cat git-simple-commit/.git/objects/88/e38705fdbd3608cddbe904b67c731f3234c45b | inflate | hexdump -C
   # Store a tree as: string of mode, space, filename, null, and id as binary
