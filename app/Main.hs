@@ -1,11 +1,12 @@
 module Main where
 
-import Params (cmdLineParser, Params(..))
+import Params (Params (..), cmdLineParser)
+
 -- import Init (initRepository)
 
 -- main :: Params -> IO ()
 -- main params =
-  -- putStrLn "Test"
+-- putStrLn "Test"
 
 main :: IO ()
 main = putStrLn "Test"

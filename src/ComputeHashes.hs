@@ -1,15 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module ComputeHashes
-  ( hashString,
-    toHex,
-    numBytesUtf8,
-    string,
-    blob,
-    compressed,
-    hashlazy,
-  )
-where
+module ComputeHashes (
+  hashString,
+  toHex,
+  numBytesUtf8,
+  string,
+  blob,
+  compressed,
+  hashlazy,
+) where
 
 import Codec.Compression.Zlib
 import Crypto.Hash.SHA1 (hashlazy)

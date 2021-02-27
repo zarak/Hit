@@ -1,8 +1,7 @@
-module Params
-  ( cmdLineParser,
-    Params,
-  )
-where
+module Params (
+  cmdLineParser,
+  Params,
+) where
 
 import Options.Applicative (Parser, execParser, fullDesc, help, helper, info, metavar, progDesc, strArgument, (<**>))
 
