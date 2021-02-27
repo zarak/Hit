@@ -1,11 +1,8 @@
 module Init
-  ( 
+  ( initRepository
   ) where
 
-import Params (cmdLineParser, Params(..))
-
-init :: Params -> IO ()
-init params = do
-  _readParams -- Read command line arguments
+initRepository :: FilePath -> IO ()
+initRepository fp = do
   _createPaths -- Create root and git paths
   _createDirs -- Create object and refs directories
