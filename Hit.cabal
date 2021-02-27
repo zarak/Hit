@@ -32,6 +32,9 @@ library
     build-depends:    base ^>=4.14.1.0
                     , zlib
                     , bytestring
+                    , cryptohash
+                    , base16-bytestring
+                    , process
     hs-source-dirs:   src
     default-language: Haskell2010
 
