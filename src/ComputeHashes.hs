@@ -3,6 +3,7 @@
 module ComputeHashes
   ( hashString,
     toHex,
+    numBytesUtf8,
   )
 where
 
@@ -20,10 +21,15 @@ run :: IO ()
 run = do
   -- hashFile path >>= putStrLn . toHex
   let string = "hello\n"
-  putStrLn $ "raw: " ++ toHex (hashString string)
+  let blob = "blob " <> show (numBytesUtf8 string) <> "\0" <> string
+  putStrLn $ "raw: " <> toHex (hashString string)
+  putStrLn $ "blob: " <> toHex (hashString blob)
 
 toHex :: Strict.ByteString -> String
 toHex bytes = Strict.unpack bytes >>= printf "%02x"
 
 hashString :: String -> Strict.ByteString
 hashString = hashlazy . Lazy.fromStrict . T.encodeUtf8 . T.pack
+
+numBytesUtf8 :: String -> Int
+numBytesUtf8 = Strict.length . T.encodeUtf8 . T.pack
