@@ -4,6 +4,10 @@ module ComputeHashes
   ( hashString,
     toHex,
     numBytesUtf8,
+    string,
+    blob,
+    compressed,
+    hashlazy
   )
 where
 
@@ -17,13 +21,15 @@ import qualified Data.Text.Encoding as T
 import System.Process (system)
 import Text.Printf (printf)
 
+string = "hello\n"
+blob = "blob " <> show (numBytesUtf8 string) <> "\0" <> string
+compressed = compress $ Lazy.fromStrict $ T.encodeUtf8 $ T.pack blob
+
 run :: IO ()
 run = do
-  -- hashFile path >>= putStrLn . toHex
-  let string = "hello\n"
-  let blob = "blob " <> show (numBytesUtf8 string) <> "\0" <> string
   putStrLn $ "raw: " <> toHex (hashString string)
   putStrLn $ "blob: " <> toHex (hashString blob)
+  putStrLn $ "compressed: " <> toHex (hashlazy compressed)
 
 toHex :: Strict.ByteString -> String
 toHex bytes = Strict.unpack bytes >>= printf "%02x"
