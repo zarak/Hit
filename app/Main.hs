@@ -1,6 +1,7 @@
 module Main where
 
 import Params (Params (..), cmdLineParser)
+import System.Environment
 
 -- import Init (initRepository)
 
@@ -9,4 +10,4 @@ import Params (Params (..), cmdLineParser)
 -- putStrLn "Test"
 
 main :: IO ()
-main = putStrLn "Test"
+main = getArgs >>= mapM_ putStrLn
