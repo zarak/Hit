@@ -27,9 +27,9 @@ initRepository fp = do
   let gitPath = basePath </> $(mkRelDir ".git")
       objectsPath = gitPath </> $(mkRelDir "objects")
       refsPath = gitPath </> $(mkRelDir "refs")
-  handle handler $ createDirectory $ fromAbsDir gitPath
-  createDirectory $ fromAbsDir objectsPath
-  createDirectory $ fromAbsDir refsPath
+  handle handler $ createDirectoryIfMissing True $ fromAbsDir gitPath
+  handle handler $ createDirectoryIfMissing True $ fromAbsDir objectsPath
+  handle handler $ createDirectoryIfMissing True $ fromAbsDir refsPath
 
 handler :: IOException -> IO ()
 handler e = print e
