@@ -25,6 +25,7 @@ createSubdirectories basePath = do
       createDirectories = handle handler . createDirectoryIfMissing True . fromAbsDir
   doesPathExist (fromAbsDir gitPath) >>= \exists ->
     if exists
+       -- TODO: Throw an exception
       then putStrLn "Directory already exists"
       else do
         mapM_ createDirectories [gitPath, objectsPath, refsPath]
