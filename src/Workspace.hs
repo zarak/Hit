@@ -3,6 +3,7 @@ module Workspace
   ) where
 
 import Path
+import System.Directory
 
-listFiles :: FilePath -> [Path Abs Dir]
-listFiles  = _todo
+listFiles :: FilePath -> IO [FilePath]
+listFiles  = listDirectory
