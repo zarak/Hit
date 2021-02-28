@@ -30,7 +30,7 @@ initRepository fp = do
       createDirectories = handle handler . createDirectoryIfMissing True . fromAbsDir
   doesPathExist (fromAbsDir gitPath) >>= \exists ->
     if exists
-      then print "Directory already exists"
+      then putStrLn "Directory already exists"
       else do
         mapM_ createDirectories [gitPath, objectsPath, refsPath]
         putStrLn $ "Initialized empty Hit repository in " <> fromAbsDir gitPath
