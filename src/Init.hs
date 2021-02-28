@@ -7,11 +7,22 @@ module Init
   )
 where
 
-import Control.Exception
-import Control.Exception.Base
+import Control.Exception ( IOException, handle )
+import Control.Exception.Base ()
 import Control.Monad ((>=>))
 import Path
+    ( (</>),
+      fromAbsDir,
+      mkRelDir,
+      parseAbsDir,
+      parseSomeDir,
+      Path,
+      Abs,
+      Dir,
+      Rel,
+      SomeBase(Rel, Abs) )
 import System.Directory
+    ( createDirectoryIfMissing, doesPathExist, getCurrentDirectory )
 
 initRepository :: FilePath -> IO ()
 initRepository = do

@@ -6,4 +6,4 @@ import Path
 import System.Directory (listDirectory)
 
 listFiles :: FilePath -> IO [FilePath]
-listFiles  = listDirectory
+listFiles = listDirectory
