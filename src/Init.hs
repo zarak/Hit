@@ -9,21 +9,16 @@ where
 
 import Control.Exception
 import Control.Exception.Base
+import Control.Monad ((>=>))
 import Path
 import System.Directory
 
 initRepository :: FilePath -> IO ()
-initRepository fp = do
-  basePath <-
-    if null fp
-      then getCurrentDirectory >>= parseAbsDir
-      else
-        parseSomeDir fp >>= \case
-          Abs path -> pure path
-          Rel relPath -> do
-            currentDir <- getCurrentDirectory >>= parseAbsDir
-            pure $ currentDir </> relPath
+initRepository = do
+  createRootDirectory >=> createSubdirectories
 
+createSubdirectories :: Path Abs Dir -> IO ()
+createSubdirectories basePath = do
   let gitPath = basePath </> $(mkRelDir ".git")
       objectsPath = gitPath </> $(mkRelDir "objects")
       refsPath = gitPath </> $(mkRelDir "refs")
@@ -34,10 +29,17 @@ initRepository fp = do
       else do
         mapM_ createDirectories [gitPath, objectsPath, refsPath]
         putStrLn $ "Initialized empty Hit repository in " <> fromAbsDir gitPath
-        
 
--- handle handler . createDirectoryIfMissing True . fromAbsDir objectsPath
--- handle handler . createDirectoryIfMissing True . fromAbsDir refsPath
+createRootDirectory :: FilePath -> IO (Path Abs Dir)
+createRootDirectory fp = do
+  if null fp
+    then getCurrentDirectory >>= parseAbsDir
+    else
+      parseSomeDir fp >>= \case
+        Abs path -> pure path
+        Rel relPath -> do
+          currentDir <- getCurrentDirectory >>= parseAbsDir
+          pure $ currentDir </> relPath
 
 handler :: IOException -> IO ()
-handler e = print e
+handler = print
