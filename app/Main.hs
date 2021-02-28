@@ -11,5 +11,5 @@ work :: Params -> IO ()
 work params = do
   case command params of
     "init" -> initRepository $ repoPath params
-    "commit" -> _todo
+    "commit" -> undefined
     _ -> pure ()
