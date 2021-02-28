@@ -27,9 +27,14 @@ initRepository fp = do
   let gitPath = basePath </> $(mkRelDir ".git")
       objectsPath = gitPath </> $(mkRelDir "objects")
       refsPath = gitPath </> $(mkRelDir "refs")
-  handle handler $ createDirectoryIfMissing True $ fromAbsDir gitPath
-  handle handler $ createDirectoryIfMissing True $ fromAbsDir objectsPath
-  handle handler $ createDirectoryIfMissing True $ fromAbsDir refsPath
+      createDirectories = handle handler . createDirectoryIfMissing True . fromAbsDir
+  doesPathExist (fromAbsDir gitPath) >>= \exists ->
+    if exists
+      then print "Directory already exists"
+      else mapM_ createDirectories [gitPath, objectsPath, refsPath]
+
+-- handle handler . createDirectoryIfMissing True . fromAbsDir objectsPath
+-- handle handler . createDirectoryIfMissing True . fromAbsDir refsPath
 
 handler :: IOException -> IO ()
 handler e = print e
