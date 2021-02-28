@@ -25,6 +25,7 @@ library
     exposed-modules:  ComputeHashes
                     , Params
                     , Init
+                    , Workspace
 
     -- Modules included in this library but not exported.
     -- other-modules:

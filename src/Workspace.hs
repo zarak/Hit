@@ -1,5 +1,5 @@
 module Workspace
-  ( 
+  ( listFiles
   ) where
 
 import Path
