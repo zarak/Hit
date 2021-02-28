@@ -1,13 +1,15 @@
 module Main where
 
-import Params (Params (..), cmdLineParser)
+import Params (Params (..), cmdLineParser, command)
 import System.Environment
 
--- import Init (initRepository)
-
--- main :: Params -> IO ()
--- main params =
--- putStrLn "Test"
+import Init (initRepository)
 
 main :: IO ()
-main = getArgs >>= mapM_ putStrLn
+main = cmdLineParser >>= work
+
+work :: Params -> IO ()
+work params = do
+  if command params == "init"
+     then initRepository $ repoPath params
+     else pure ()
