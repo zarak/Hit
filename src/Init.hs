@@ -2,27 +2,30 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module Init
-  ( initRepository,
-  )
-where
+module Init (
+  initRepository,
+) where
 
-import Control.Exception ( IOException, handle )
+import Control.Exception (IOException, handle)
 import Control.Exception.Base ()
 import Control.Monad ((>=>))
-import Path
-    ( (</>),
-      fromAbsDir,
-      mkRelDir,
-      parseAbsDir,
-      parseSomeDir,
-      Path,
-      Abs,
-      Dir,
-      Rel,
-      SomeBase(Rel, Abs) )
-import System.Directory
-    ( createDirectoryIfMissing, doesPathExist, getCurrentDirectory )
+import Path (
+  Abs,
+  Dir,
+  Path,
+  Rel,
+  SomeBase (Abs, Rel),
+  fromAbsDir,
+  mkRelDir,
+  parseAbsDir,
+  parseSomeDir,
+  (</>),
+ )
+import System.Directory (
+  createDirectoryIfMissing,
+  doesPathExist,
+  getCurrentDirectory,
+ )
 
 initRepository :: FilePath -> IO ()
 initRepository = do
@@ -36,8 +39,8 @@ createSubdirectories basePath = do
       createDirectories = handle handler . createDirectoryIfMissing True . fromAbsDir
   doesPathExist (fromAbsDir gitPath) >>= \exists ->
     if exists
-       -- TODO: Throw an exception
-      then putStrLn "Directory already exists"
+      then -- TODO: Throw an exception
+        putStrLn "Directory already exists"
       else do
         mapM_ createDirectories [gitPath, objectsPath, refsPath]
         putStrLn $ "Initialized empty Hit repository in " <> fromAbsDir gitPath

@@ -1,7 +1,6 @@
-module Database
-    ( 
-    ) where
+module Database (
+  ) where
 
 store :: a -> IO ()
 store =
-    error "Not implemented yet"
+  error "Not implemented yet"

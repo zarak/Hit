@@ -1,16 +1,15 @@
-module Params
-  ( cmdLineParser,
-    Params,
-    command,
-    repoPath,
-  )
-where
+module Params (
+  cmdLineParser,
+  Params,
+  command,
+  repoPath,
+) where
 
 import Options.Applicative (Parser, execParser, fullDesc, help, helper, info, long, metavar, progDesc, strArgument, strOption, value, (<**>))
 
 data Params = Params
-  { command :: String,
-    repoPath :: FilePath
+  { command :: String
+  , repoPath :: FilePath
   }
 
 mkParams :: Parser Params
